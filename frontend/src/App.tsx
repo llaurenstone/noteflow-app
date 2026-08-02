@@ -312,8 +312,14 @@ function App() {
         <header className="app-header">
           <p className="eyebrow">TASK MANAGER</p>
           <h1>NoteFlow</h1>
-          <p className="subtitle">
-            Create tasks and let the app suggest a priority and tag.
+          <p className="hero-subtitle">
+            Full-stack task management built with React, TypeScript,
+            FastAPI, GraphQL, and PostgreSQL.
+          </p>
+
+          <p className="hero-description">
+            Create tasks and automatically receive priority and tag
+            suggestions to keep your workflow organized.
           </p>
         </header>
 
