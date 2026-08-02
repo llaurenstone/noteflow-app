@@ -2,6 +2,8 @@
 
 A full-stack task management application built with **React, TypeScript, FastAPI, GraphQL, SQLAlchemy, and Apollo Client**.
 
+Website URL: https://noteflow-app-smoky.vercel.app
+
 NoteFlow allows users to create, organize, complete, and manage tasks through a modern React interface backed by a FastAPI GraphQL server. The application includes a rule-based task classifier that automatically suggests task priorities and categories to help users organize their work more efficiently.
 
 ![NoteFlow task dashboard](screenshots/create-task.png)
