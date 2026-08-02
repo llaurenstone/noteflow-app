@@ -27,4 +27,9 @@ graphql_app = GraphQLRouter(schema)
 app.include_router(graphql_app, prefix="/graphql")
 
 
-@app.get(
+@app.get("/")
+def root():
+    return {
+        "message": "Task Notes API is running!",
+        "graphql": "/graphql",
+    }
