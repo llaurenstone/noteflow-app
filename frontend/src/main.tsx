@@ -17,4 +17,13 @@ const client = new ApolloClient({
 const rootElement = document.getElementById('root')
 
 if (!rootElement) {
-  throw new Error('Root element was not fo
+  throw new Error('Root element was not found')
+}
+
+createRoot(rootElement).render(
+  <StrictMode>
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
+  </StrictMode>,
+)

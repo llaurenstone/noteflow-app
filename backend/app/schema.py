@@ -54,22 +54,68 @@ class Mutation:
         db: Session = SessionLocal()
 
         try:
+            clean_title = title.strip()
+            clean_notes = notes.strip()
+
             priority = "normal"
             tag = None
 
             if use_suggestion:
-                suggestion = suggest_priority_and_tag(title, notes)
+                suggestion = suggest_priority_and_tag(
+                    clean_title,
+                    clean_notes,
+                )
                 priority = suggestion["priority"]
                 tag = suggestion["tag"]
 
             task = Task(
-                title=title,
-                notes=notes,
+                title=clean_title,
+                notes=clean_notes,
                 priority=priority,
                 tag=tag,
             )
 
             db.add(task)
+            db.commit()
+            db.refresh(task)
+
+            return task_to_type(task)
+        finally:
+            db.close()
+
+    @strawberry.mutation
+    def update_task(
+        self,
+        task_id: int,
+        title: str,
+        notes: str = "",
+        use_suggestion: bool = True,
+    ) -> Optional[TaskType]:
+        db: Session = SessionLocal()
+
+        try:
+            task = db.query(Task).filter(Task.id == task_id).first()
+
+            if task is None:
+                return None
+
+            clean_title = title.strip()
+            clean_notes = notes.strip()
+
+            if not clean_title:
+                return None
+
+            task.title = clean_title
+            task.notes = clean_notes
+
+            if use_suggestion:
+                suggestion = suggest_priority_and_tag(
+                    clean_title,
+                    clean_notes,
+                )
+                task.priority = suggestion["priority"]
+                task.tag = suggestion["tag"]
+
             db.commit()
             db.refresh(task)
 
