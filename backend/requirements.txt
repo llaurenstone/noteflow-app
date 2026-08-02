@@ -4,3 +4,5 @@ sqlalchemy
 psycopg2-binary
 strawberry-graphql[fastapi]
 python-dotenv
+pytest
+httpx

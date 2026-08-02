@@ -1,16 +1,26 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from strawberry.fastapi import GraphQLRouter
 
 from .database import Base, engine
 from .schema import schema
 
-# Create database tables on startup
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Task Notes API")
 
-graphql_app = GraphQLRouter(schema)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://localhost:5174",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
+graphql_app = GraphQLRouter(schema)
 app.include_router(graphql_app, prefix="/graphql")
 
 
