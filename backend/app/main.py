@@ -17,4 +17,16 @@ app.add_middleware(
     ],
     allow_credentials=True,
     allow_methods=["*"],
-    allow_hea
+    allow_headers=["*"],
+)
+
+graphql_app = GraphQLRouter(schema)
+app.include_router(graphql_app, prefix="/graphql")
+
+
+@app.get("/")
+def root():
+    return {
+        "message": "Task Notes API is running!",
+        "graphql": "/graphql",
+    }

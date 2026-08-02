@@ -1,75 +1,158 @@
-# React + TypeScript + Vite
+# NoteFlow
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An AI-assisted full-stack task management application built with React, FastAPI, GraphQL, SQLAlchemy, and Apollo Client.
 
-Currently, two official plugins are available:
+Users can create, complete, and delete tasks while automatically receiving intelligent priority and category suggestions.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Create tasks
+- Delete tasks
+- Mark tasks complete
+- AI-generated priority suggestions
+- AI-generated task tags
+- GraphQL API
+- Apollo Client integration
+- Responsive React UI
+- SQLite database
+- Docker support
+- Unit & integration testing
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Tech Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Frontend
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- React
+- TypeScript
+- Apollo Client
+- Vite
+- CSS
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Backend
 
-```
+- FastAPI
+- Strawberry GraphQL
+- SQLAlchemy
+- SQLite
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Testing
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Pytest
+- Vitest
+- React Testing Library
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## Project Structure
 
 ```
+task-notes-app
+│
+├── backend
+│   ├── app
+│   ├── tests
+│   └── Dockerfile
+│
+├── frontend
+│   ├── src
+│   ├── public
+│   └── tests
+│
+└── docker-compose.yml
+```
+
+---
+
+## Running the Project
+
+### Backend
+
+```bash
+cd backend
+
+python -m venv venv
+
+source venv/bin/activate
+
+pip install -r requirements.txt
+
+uvicorn app.main:app --reload
+```
+
+Backend:
+
+```
+http://localhost:8000
+```
+
+---
+
+### Frontend
+
+```bash
+cd frontend
+
+npm install
+
+npm run dev
+```
+
+Frontend:
+
+```
+http://localhost:5173
+```
+
+---
+
+## Running Tests
+
+### Backend
+
+```bash
+pytest -v
+```
+
+### Frontend
+
+```bash
+npx vitest run
+```
+
+---
+
+## Screenshots
+
+### Create Task
+
+(Add screenshot)
+
+### AI Priority
+
+(Add screenshot)
+
+### Completed Task
+
+(Add screenshot)
+
+---
+
+## Future Improvements
+
+- User authentication
+- Due dates
+- Search
+- Drag-and-drop task ordering
+- Task editing
+- PostgreSQL deployment
+- Cloud deployment (AWS)
+
+---
+
+## Author
+
+Lauren Stone
